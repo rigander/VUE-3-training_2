@@ -1,30 +1,68 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
-  <router-view/>
+  <div class="app">
+    <PostForm/>
+    <PostList :posts="posts"/>
+  </div>
+
 </template>
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
+<script>
+import PostForm from "@/components/PostForm";
+import PostList from "@/components/PostList";
+export default {
+  components: {
+    PostList,
+    PostForm
+  },
+  name: "App",
+  data() {
+    return {
+      posts: [
+        {id:1, title: 'Javascript', body: 'Post description'},
+        {id:2, title: 'Javascript 2', body: 'Post description 2'},
+        {id:3, title: 'Javascript 3', body: 'Post description 3'},
+        {id:4, title: 'Javascript 4', body: 'Post description 4'}
+      ],
+      title:'',
+      body: ''
     }
+  },
+  methods: {
+    createPost() {
+      const newPost = {
+        id: Date.now(),
+        title: this.title,
+        body: this.body,
+      }
+      this.posts.push(newPost);
+      this.title = '';
+      this.body = '';
+
+    },
   }
 }
+</script>
+
+<style>
+*{
+  margin: 2px 2px;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: #2b2b2b;
+  color: bisque;
+}
+
+  button {
+    padding: 5px;
+    margin-top: 5px;
+    border-radius: 2px;
+    border: #2768a9;
+    background-color: bisque;
+    color: #2768a9;
+    align-self: flex-end;
+}
+  button:active {
+    background-color: #2768a9;
+    color: darkgoldenrod;
+  }
 </style>
