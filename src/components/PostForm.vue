@@ -13,18 +13,19 @@
         type="text"
         placeholder="Description"
     >
-    <button
-        class="btn"
+    <MyButton
         @click="createPost"
     >
-    Create Post
-    </button>
+      <slot>Create Post</slot>
+    </MyButton>
   </form>
 </template>
 
 <script>
+import MyButton from "@/components/UI/my-button";
 export default {
   name: "PostForm",
+  components: {MyButton},
   data() {
     return {
       post: {
@@ -64,18 +65,5 @@ form{
 .input::placeholder{
   color: #2768a9;
   font-size: 11px;
-}
-button {
-  padding: 5px;
-  margin-top: 5px;
-  border-radius: 2px;
-  border: #2768a9;
-  background-color: bisque;
-  color: #2768a9;
-  align-self: flex-end;
-}
-button:active {
-  background-color: #2768a9;
-  color: darkgoldenrod;
 }
 </style>
