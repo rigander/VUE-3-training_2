@@ -2,12 +2,12 @@
   <form @submit.prevent>
     <h4>Post Name</h4>
     <my-input
-        v-model:value="post.title"
+        v-model="post.title"
         type="text"
         placeholder="Post Name"
     />
     <my-input
-        v-model:value="post.body"
+        v-model="post.body"
         type="text"
         placeholder="Description"
     />
