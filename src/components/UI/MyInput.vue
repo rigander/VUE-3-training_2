@@ -1,16 +1,17 @@
 <template>
-  <input :value="modelValue" @input="updateInput" class="input" type="text">
+  <input :value="value" @input="updateInput" class="input" type="text">
 </template>
 
 <script>
 export default {
   name: "MyInput",
   props: {
-    modelValue: [String, Number]
+    value: [String, Number],
+
   },
   methods: {
     updateInput(event) {
-      this.$emit('update:modelValue', event.target.value)
+      this.$emit('update:value', event.target.value)
     }
   }
 }
@@ -19,7 +20,6 @@ export default {
 <style scoped>
 .input {
   width: 100%;
-  border: 1px solid;
   padding: 5px;
   margin-top: 5px;
   background-color: rgb(204, 186, 105);

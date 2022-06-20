@@ -23,9 +23,7 @@ export default {
     return {
       posts: [
         {id:1, title: 'Javascript', body: 'Post description'},
-        {id:2, title: 'Javascript 2', body: 'Post description 2'},
-        {id:3, title: 'Javascript 3', body: 'Post description 3'},
-        {id:4, title: 'Javascript 4', body: 'Post description 4'}
+        {id:2, title: 'Javascript 2', body: 'Post description 2'}
       ],
     }
   },

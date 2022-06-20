@@ -2,19 +2,19 @@
   <form @submit.prevent>
     <h4>Post Name</h4>
     <my-input
-        v-model="post.title"
+        v-model:value="post.title"
         type="text"
         placeholder="Post Name"
     />
     <my-input
-        v-model="post.body"
+        v-model:value="post.body"
         type="text"
         placeholder="Description"
     />
     <my-button
         @click="createPost"
     >
-      <slot>Create Post</slot>
+      Create Post
     </my-button>
   </form>
 </template>

@@ -6,7 +6,6 @@
     </div>
     <div class="post__btns">
       <my-button
-
       >Delete Post
       </my-button>
     </div>
