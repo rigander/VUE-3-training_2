@@ -1,10 +1,15 @@
 <template>
-  <input :value="modelValue" @input="updateInput" class="input" type="text">
+  <textarea
+      :value="modelValue"
+      @input="updateInput"
+      class="input"
+      >
+  </textarea>
 </template>
 
 <script>
 export default {
-  name: "MyInput",
+  name: "MyInputTextArea",
   props: {
     modelValue: [String, Number],
 
@@ -18,7 +23,10 @@ export default {
 </script>
 
 <style scoped>
-.input {
+textarea {
+  resize: none;
+  width: 370px;
+  height: 120px;
   padding: 5px;
   margin-top: 5px;
   background-color: rgb(204, 186, 105);
@@ -26,8 +34,8 @@ export default {
   border-radius: 1px;
   color: #000;
 }
-.input::placeholder{
+textarea::placeholder{
   color: #2768a9;
-  font-size: 11px;
+  font-size: 12px;
 }
 </style>

@@ -1,16 +1,18 @@
 <template>
   <form @submit.prevent>
-    <h4>Post Name</h4>
+    <h4>Create New Post</h4>
+    <br>
     <my-input
         v-model="post.title"
         type="text"
         placeholder="Post Name"
     />
-    <my-input
+    <my-input-text-area
         v-model="post.body"
         type="text"
         placeholder="Description"
     />
+    <br>
     <my-button
         @click="createPost"
     >
@@ -22,8 +24,10 @@
 <script>
 
 
+import MyInputTextArea from "@/components/UI/MyInputTextArea";
 export default {
   name: "PostForm",
+  components: {MyInputTextArea},
   data() {
     return {
       post: {
@@ -49,6 +53,8 @@ export default {
 form{
   display: flex;
   flex-direction: column;
+  padding-left: 15px;
+  padding-right: 15px;
 }
 
 </style>
