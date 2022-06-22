@@ -1,7 +1,8 @@
 <template>
   <div class="app">
+    <input type="text" v-model.number="title">
     <h1>Posts Page</h1>
-    <my-button
+        <my-button
         @click="showDialog"
     >Create Post
     </my-button>
@@ -22,20 +23,23 @@
 import PostForm from "@/components/PostForm";
 import PostList from "@/components/PostList";
 import MyButton from "@/components/UI/my-button";
+import MyDialog from "@/components/MyDialog";
 export default {
   components: {
     MyButton,
     PostList,
-    PostForm
+    PostForm,
+    MyDialog
   },
   name: "App",
   data() {
     return {
+      title: '',
       posts: [
         {id:1, title: 'Javascript', body: 'Post description'},
         {id:2, title: 'Javascript 2', body: 'Post description 2'}
       ],
-      dialogVisible: false
+      dialogVisible: false,
     }
   },
   methods: {
@@ -47,7 +51,7 @@ export default {
     },
     showDialog() {
       this.dialogVisible = true;
-    }
+    },
   }
 }
 </script>
