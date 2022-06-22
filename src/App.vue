@@ -5,10 +5,6 @@
         @click="showDialog"
     >Create Post
     </my-button>
-    <my-button
-        @click="fetchPosts"
-        >Get Posts
-    </my-button>
     <my-dialog v-model:show="dialogVisible">
       <PostForm
           @create="createPost"
@@ -17,7 +13,9 @@
     <PostList
         :posts="posts"
         @remove="removePost"
+        v-if="!isPostsLoading"
     />
+    <div class="loading" v-else >LOADING....</div>
   </div>
 
 </template>
@@ -40,6 +38,7 @@ export default {
     return {
       posts: [],
       dialogVisible: false,
+      isPostsLoading: false
     }
   },
   methods: {
@@ -54,12 +53,21 @@ export default {
     },
     async fetchPosts() {
       try {
-        const response = await axios.get('https://jsonplaceholder.typicode.com/posts?_limit=10');
-        this.posts = response.data;
+        this.isPostsLoading = true;
+        setTimeout(async () => {
+          const response = await axios.get('https://jsonplaceholder.typicode.com/posts?_limit=10');
+          this.posts = response.data;
+          this.isPostsLoading = false;
+        }, 2000)
       } catch (e) {
         alert ('Error')
+      } finally {
+
       }
     }
+  },
+  mounted() {
+    this.fetchPosts()
   }
 }
 </script>
@@ -85,5 +93,11 @@ export default {
   button:active {
     background-color: #2768a9;
     color: darkgoldenrod;
+  }
+  .loading{
+    color: red;
+    font-size: 28px;
+    font-weight: bold;
+    margin: 10% 40%;
   }
 </style>
