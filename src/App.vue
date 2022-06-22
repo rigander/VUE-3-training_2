@@ -1,10 +1,13 @@
 <template>
   <div class="app">
-    <input type="text" v-model.number="title">
     <h1>Posts Page</h1>
-        <my-button
+    <my-button
         @click="showDialog"
     >Create Post
+    </my-button>
+    <my-button
+        @click="fetchPosts"
+        >Get Posts
     </my-button>
     <my-dialog v-model:show="dialogVisible">
       <PostForm
@@ -24,6 +27,7 @@ import PostForm from "@/components/PostForm";
 import PostList from "@/components/PostList";
 import MyButton from "@/components/UI/my-button";
 import MyDialog from "@/components/MyDialog";
+import axios from 'axios';
 export default {
   components: {
     MyButton,
@@ -34,11 +38,7 @@ export default {
   name: "App",
   data() {
     return {
-      title: '',
-      posts: [
-        {id:1, title: 'Javascript', body: 'Post description'},
-        {id:2, title: 'Javascript 2', body: 'Post description 2'}
-      ],
+      posts: [],
       dialogVisible: false,
     }
   },
@@ -52,6 +52,14 @@ export default {
     showDialog() {
       this.dialogVisible = true;
     },
+    async fetchPosts() {
+      try {
+        const response = await axios.get('https://jsonplaceholder.typicode.com/posts?_limit=10');
+        this.posts = response.data;
+      } catch (e) {
+        alert ('Error')
+      }
+    }
   }
 }
 </script>
