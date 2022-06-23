@@ -1,20 +1,26 @@
 <template>
   <div class="app">
     <h1>Posts Page</h1>
-    <my-button
-        @click="showDialog"
-    >Create Post
-    </my-button>
+    <div class="app__btns">
+      <my-button
+         @click="showDialog"
+      >Create Post
+      </my-button>
+      <my-select
+         v-model="selectedSort"
+         :options="sortOptions"
+      />
+    </div>
     <my-dialog v-model:show="dialogVisible">
       <PostForm
-          @create="createPost"
+         @create="createPost"
       />
     </my-dialog>
-    <PostList
-        :posts="posts"
-        @remove="removePost"
-        v-if="!isPostsLoading"
-    />
+      <PostList
+         :posts="posts"
+         @remove="removePost"
+         v-if="!isPostsLoading"
+      />
     <div class="loading" v-else >LOADING....</div>
   </div>
 
@@ -26,8 +32,10 @@ import PostList from "@/components/PostList";
 import MyButton from "@/components/UI/my-button";
 import MyDialog from "@/components/MyDialog";
 import axios from 'axios';
+import MySelect from "@/components/UI/MySelect";
 export default {
   components: {
+    MySelect,
     MyButton,
     PostList,
     PostForm,
@@ -38,7 +46,13 @@ export default {
     return {
       posts: [],
       dialogVisible: false,
-      isPostsLoading: false
+      isPostsLoading: false,
+      selectedSort: '',
+      sortOptions: [
+        {value: 'title', name: 'By name'},
+        {value: 'body', name: 'By content'},
+
+      ]
     }
   },
   methods: {
@@ -96,5 +110,9 @@ export default {
     font-size: 28px;
     font-weight: bold;
     margin: 10% 40%;
+  }
+  .app__btns{
+    display: flex;
+    justify-content: space-between;
   }
 </style>
