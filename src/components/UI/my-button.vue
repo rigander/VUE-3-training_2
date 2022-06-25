@@ -12,8 +12,9 @@ export default {
 
 <style scoped>
 button {
+  min-width: 120px;
   padding: 5px;
-  margin-top: 5px;
+  margin-top: 15px;
   border-radius: 2px;
   border: #2768a9;
   background-color: bisque;

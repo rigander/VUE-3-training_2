@@ -53,8 +53,13 @@ export default {
 form{
   display: flex;
   flex-direction: column;
-  padding-left: 15px;
-  padding-right: 15px;
+  padding: 10px;
+  background-color: #2768a9;
+  border-radius: 5px;
+}
+h4{
+  font-size: 22px;
+  margin: 0;
 }
 
 </style>
