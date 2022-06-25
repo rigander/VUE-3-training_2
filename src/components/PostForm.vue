@@ -3,6 +3,7 @@
     <h4>Create New Post</h4>
     <br>
     <my-input
+        v-focus
         v-model="post.title"
         type="text"
         placeholder="Post Name"

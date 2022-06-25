@@ -2,6 +2,7 @@
   <div>
     <h1>Posts Page</h1>
     <my-input
+        v-focus
         v-model="searchQuery"
         placeholder="Search..."
     />
@@ -26,7 +27,7 @@
         v-if="!isPostsLoading"
     />
     <div class="loading" v-else >LOADING....</div>
-    <div ref="observer" class="observer"></div>
+    <div v-intersection="loadMorePosts" class="observer"></div>
   </div>
 
 </template>
@@ -44,7 +45,7 @@ export default {
     MyButton,
     PostList,
     PostForm,
-    MyDialog
+    MyDialog,
   },
   name: "PostPage",
   data() {
@@ -111,18 +112,7 @@ export default {
   mounted() {
     this.fetchPosts();
     console.log(this.$refs.observer);
-    const options = {
-      rootMargin: '0px',
-      threshold: 1.0
-    }
-    const callback = (entries, observer) => {
-      if(entries[0].isIntersecting && this.page < this.totalPages) {
-        this.loadMorePosts()
-      }
-    };
-    const observer = new IntersectionObserver(callback, options);
-    observer.observe(this.$refs.observer)
-  },
+   },
   computed: {
     sortedPosts() {
       return [...this.posts].sort((post1, post2) => post1[this.selectedSort]?.localeCompare(post2[this.selectedSort]))
