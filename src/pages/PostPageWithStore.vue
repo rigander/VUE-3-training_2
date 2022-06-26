@@ -1,5 +1,8 @@
 <template>
   <div>
+    <h1>
+      {{ $store.state.isAuth ? "User Authorized" : "You need to Authorize to get access" }}
+    </h1>
     <h1>{{ $store.getters.doubleLikes }}</h1>
     <my-button
         class="like_dislike"

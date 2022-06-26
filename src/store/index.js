@@ -2,7 +2,8 @@ import {createStore} from "vuex"
 
 export default createStore( {
     state: {
-        likes: 10
+        likes: 10,
+        isAuth: false,
     },
     getters: {
         doubleLikes(state) {
