@@ -5,6 +5,7 @@
       <my-button @click="$router.push('/pages')">Posts</my-button>
       <my-button @click="$router.push('/pages')">About</my-button>
       <my-button @click="$router.push('/store')">Store</my-button>
+      <my-button @click="$router.push('/composition')">Composition</my-button>
     </div>
   </div>
 
@@ -28,7 +29,7 @@ export default {
   padding: 0 20px 15px 20px;
 }
 .navbar__btns{
-  width: 400px;
+  width: 650px;
   display: flex;
   justify-content: space-between;
 }
