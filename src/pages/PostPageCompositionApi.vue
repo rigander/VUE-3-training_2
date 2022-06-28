@@ -2,38 +2,35 @@
   <div>
     <h1>{{ likes }}</h1>
     <button @click = "addLike"
-    >Add Like</button>
-    <br>
-    <button @click = "disLike"
-    >Remove Like</button>
+    >Add Like</button>>
     <h1>Posts Page</h1>
-<!--    <my-input-->
-<!--        v-focus-->
-<!--        v-model="searchQuery"-->
-<!--        placeholder="Search..."-->
-<!--    />-->
-<!--    <div class="app__btns">-->
-<!--      <my-button-->
-<!--          @click="showDialog"-->
-<!--      >Create Post-->
-<!--      </my-button>-->
-<!--      <my-select-->
-<!--          v-model="selectedSort"-->
-<!--          :options="sortOptions"-->
-<!--      />-->
-<!--    </div>-->
-<!--    <my-dialog v-model:show="dialogVisible">-->
-<!--      <PostForm-->
-<!--          @create="createPost"-->
-<!--      />-->
-<!--    </my-dialog>-->
-<!--    <PostList-->
-<!--        :posts="sortedAndSearchedPosts"-->
-<!--        @remove="removePost"-->
-<!--        v-if="!isPostsLoading"-->
-<!--    />-->
-<!--    <div class="loading" v-else >LOADING....</div>-->
-<!--    <div v-intersection="loadMorePosts" class="observer"></div>-->
+    <my-input
+        v-focus
+        v-model="searchQuery"
+        placeholder="Search..."
+    />
+    <div class="app__btns">
+      <my-button
+          @click="showDialog"
+      >Create Post
+      </my-button>
+      <my-select
+          v-model="selectedSort"
+          :options="sortOptions"
+      />
+    </div>
+    <my-dialog v-model:show="dialogVisible">
+      <PostForm
+          @create="createPost"
+      />
+    </my-dialog>
+    <PostList
+        :posts="sortedAndSearchedPosts"
+        @remove="removePost"
+        v-if="!isPostsLoading"
+    />
+    <div class="loading" v-else >LOADING....</div>
+    <div v-intersection="loadMorePosts" class="observer"></div>
   </div>
 
 </template>
@@ -46,6 +43,7 @@ import MyDialog from "@/components/MyDialog";
 import axios from 'axios';
 import MySelect from "@/components/UI/MySelect";
 import {ref} from "vue";
+import {usePosts} from "@/hooks/usePosts";
 
 export default {
   components: {
@@ -66,18 +64,17 @@ export default {
     }
   },
   setup(props) {
-    const likes = ref(100)
-    console.log(likes)
-    const addLike = () => {
-      likes.value += 4
-    }
-    const disLike = () => {
-      likes.value -= 4
-    }
+    const {posts, totalPages, isPostLoading} = usePosts(10);
+    const {sortedPosts, selectedSort} = useSortedPosts(posts);
+    const {searchQuery, sortedAndSearchedPosts} = useSortedAndSearchedPosts(sortedPosts);
     return {
-      likes,
-      addLike,
-      disLike
+      posts,
+      totalPages,
+      isPostLoading,
+      sortedPosts,
+      selectedSort,
+      searchQuery,
+      sortedAndSearchedPosts,
     }
   }
 }
